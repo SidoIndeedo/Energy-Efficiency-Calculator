@@ -39,7 +39,7 @@ function Helper() {
             <strong>Quantity:</strong> The number of such appliances.
           </li>
           <li>
-            <strong>Runtime (Hrs/day):</strong> The average number of hours per day
+            <strong>Runtime {"(Hrs/day)"}:</strong> The average number of hours per day
             the appliance is used.
           </li>
         </ul>
