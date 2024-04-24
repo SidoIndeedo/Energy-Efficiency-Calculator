@@ -151,10 +151,10 @@ function Kal() {
           ))}
         </select>
 
-        <label htmlFor="wattage">Wattage (W):</label>
+        <label htmlFor="wattage">Wattage {"(W)"}:</label>
         <input type="number" id="wattage" name="wattage" value={wattage} onChange={(e) => setWattage(e.target.value)} required />
 
-        <label htmlFor="runtime">Run Time (hrs):</label>
+        <label htmlFor="runtime">Run Time {"(hrs)"}:</label>
         <input type="number" id="runtime" name="runtime" value={runtime} onChange={(e) => setRuntime(e.target.value)} required />
 
         <label htmlFor="quantity">Number of Appliances:</label>
@@ -171,10 +171,10 @@ function Kal() {
           <tr>
             <th>Load Description</th>
             <th>Quantity</th>
-            <th>Wattage (W)</th>
-            <th>Run-time (hrs)</th>
+            <th>Wattage {"(W)"}</th>
+            <th>Run-time {"(hrs)"}</th>
             <th>Number of Appliances</th>
-            <th>Watt-Hour (Wh)</th>
+            <th>Watt-Hour {"(Wh)"}</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -203,7 +203,7 @@ function Kal() {
         </thead>
         <tbody>
           <tr>
-            <td>Total Energy Consumption (kWh):</td>
+            <td>Total Energy Consumption {"(kWh)"}:</td>
             <td>{totalEnergyConsumption}</td>
             <td>Consider replacing old appliances with energy-efficient models.</td>
             <td></td>
@@ -215,13 +215,13 @@ function Kal() {
             <td></td>
           </tr>
           <tr>
-            <td>Carbon Emissions (kg CO2):</td>
+            <td>Carbon Emissions {"(kg CO2)"}:</td>
             <td>{carbonEmissions}</td>
             <td>Reduce energy consumption to minimize carbon footprint.</td>
             <td></td>
           </tr>
           <tr>
-            <td>Energy Efficiency Percentage (%):</td>
+            <td>Energy Efficiency Percentage {"(%)"}:</td>
             <td>{energyEfficiencyPercentage}</td>
             <td>Upgrade insulation and seal air leaks to improve efficiency.</td>
             <td></td>
