@@ -6,7 +6,7 @@ import Kal from './Calculator/Calculate';
 import Error404 from './Error/Error';
 import LoginScreen from './Login_page/LoginScreen';
 import LandingPage from './Landing_Page/LangingPage';
-import { BrowserRouter, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 function App() {
