@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+:root {
+  --gradient: linear-gradient(45deg,
+      #725fc6,
+      #7956c0,
+      #7f4cb9,
+      #8643b3,
+      #8d39ad,
+      #9420a5,
+    );
+}
+
+.landing-page {
+  text-align: center;
+  padding-top: 20px;
+  background: linear-gradient(deg45, #6a5acd, #9370DB);
+  animation: gradientAnimation 1s ease-in-out infinite alternate cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background: linear-gradient(to right, #6a5acd, #9370DB);
+  }
+
+  50% {
+    background: linear-gradient(to right, #9370DB, #6a5acd);
+  }
+
+  100% {
+    background: linear-gradient(to right, #6a5acd, #9370DB);
+  }
+}
+
+.header {
+  background-color: #6a5acd;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #32cd32;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #228b22;
+}
+
+.features {
+  padding: 50px 0;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.feature {
+  margin-bottom: 40px;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+}
+
+.footer {
+  background-color: #6a5acd;
+  padding: 20px 0;
+}
