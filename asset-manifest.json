@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/power-saver/static/css/main.d8aeb613.css",
+    "main.js": "/power-saver/static/js/main.a6eda220.js",
+    "static/js/453.ffd5a8e9.chunk.js": "/power-saver/static/js/453.ffd5a8e9.chunk.js",
+    "index.html": "/power-saver/index.html",
+    "main.d8aeb613.css.map": "/power-saver/static/css/main.d8aeb613.css.map",
+    "main.a6eda220.js.map": "/power-saver/static/js/main.a6eda220.js.map",
+    "453.ffd5a8e9.chunk.js.map": "/power-saver/static/js/453.ffd5a8e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8aeb613.css",
+    "static/js/main.a6eda220.js"
+  ]
+}
