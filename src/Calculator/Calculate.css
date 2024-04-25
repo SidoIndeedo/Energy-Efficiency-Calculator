@@ -31,18 +31,52 @@ select {
   border-radius: 4px;
 }
 
-button {
+.btn-container {
+  /* background-color: #4CAF50; */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  width: 96%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cal-btn {
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
+  width: 19%;
   cursor: pointer;
 }
 
-button:hover {
+.cal-btn:hover {
   background-color: #45a049;
+  transition: all .25s;
+
 }
+
+.link-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  width: 6%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-btn:hover {
+  background-color: #45a049;
+  transition: all .25s;
+
+}
+
 
 /* table {
   width: 100%;
@@ -66,24 +100,94 @@ th {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  text-align: center;
 }
 
 .calculation-table th,
 .calculation-table td {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 10px;
+  color: white;
+  text-align: center;
 }
 
-.calculation-table th {
-  background-color: #cccccc;
+.header-container th {
+  background-color: #7f6bfe;
+  text-align: center;
+
 }
 
-.calculation-table td:nth-child(odd) {
-  background-color: #9370DB;
+
+
+.info-container tr,
+.info-container td {
+  color: black;
+  padding-top: 4px;
+  padding-right: 0px;
+  text-align: center;
+
+}
+
+.info-container tr:nth-child(odd) {
+  background-color: #fafafa;
+
+}
+
+.info-container tr:nth-child(even) {
+  background-color: #eeee;
 }
 
 .calculation-table td:last-child {
-  width: 20%;
+  width: 30%;
+}
+
+
+
+.input-container {
+  position: block;
+}
+
+.question-mark {
+  position: block;
+  top: 13%;
+  right: 10px;
+  /* Adjust as needed */
+  /* transform: translateY(-10%); */
+
+  cursor: pointer;
+  width: 3%;
+
+}
+
+.question-img {
+  width: 3%;
+  position: relative;
+  /* transform: translateY(-110%); */
+  /* transform: translateX(1870%); */
+  top: -5.3vh;
+  right: -96%;
+
+}
+
+
+.question-mark:hover {
+  text-decoration: underline;
+
+}
+
+
+.speech-text {
+  position: absolute;
+  top: -60px;
+  /* Adjust as needed */
+  left: 65%;
+  transform: translateX(0%);
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  width: 300%;
+  height: 160%;
 }
 
 

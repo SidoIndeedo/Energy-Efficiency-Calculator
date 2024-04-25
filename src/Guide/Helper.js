@@ -21,7 +21,7 @@ function Helper() {
         <p>
           Welcome to the Solar System Sizing Calculator. This guide will walk you
           through how to use this application to calculate the optimal solar energy
-          system for your needs. Let's get started:
+          system for your needs. Let{"'"}s get started:
         </p>
       </div>
       <div className="step-container">
@@ -119,7 +119,7 @@ function Helper() {
       </p>
       <hr />
 
-      <Link to="/K" className="calculate-button">Calculate</Link>
+      <Link to="/calculate" className="calculate-button">Calculate</Link>
     </div>
   )
 }

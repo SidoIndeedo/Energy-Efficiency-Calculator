@@ -24,9 +24,10 @@ function Navbar() {
         </div>
         <ul>
           <li>
-            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/power-saver" className="nav-link">Home</Link>
             <Link to="/login" className="nav-link">Login</Link>
             <Link to="/calculate" className="nav-link">Calculate</Link>
+            <Link to="/services" className="nav-link">Services</Link>
           </li>
         </ul>
       </nav>

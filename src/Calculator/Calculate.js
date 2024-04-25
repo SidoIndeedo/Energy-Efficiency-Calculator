@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Calculate.css';
-
+import question_mark from './icons/question_mark.png'
 const APPLIANCE_OPTIONS = {
   'TV': {
     wattage: 100,
@@ -71,6 +71,12 @@ function Kal() {
   const [wattage, setWattage] = useState('');
   const [runtime, setRuntime] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [energyOutput, setEnergyOutput] = useState('');
+  const handleQuestionClick = () => {
+    // Navigate to the '/services' page when the question mark is clicked
+    window.location.href = '/services'; // Redirect to the '/services' page
+  };
+
 
   useEffect(() => {
     window.scrollTo({
@@ -90,12 +96,14 @@ function Kal() {
 
   const addAppliance = (e) => {
     e.preventDefault();
-    if (wattage !== '' && runtime !== '' && quantity !== '' && wattage >= 0 && runtime >= 0 && quantity >= 0) {
+    if (wattage !== '' && runtime !== '' && quantity !== '' && energyOutput !== '' &&
+      wattage >= 0 && runtime >= 0 && quantity >= 0 && energyOutput >= 0) {
       const newAppliance = {
         name: selectedAppliance,
         wattage: parseInt(wattage),
         runtime: parseInt(runtime),
         quantity: parseInt(quantity),
+        energyOutput: parseInt(energyOutput),
       };
       setAppliances([...appliances, newAppliance]);
     } else {
@@ -103,41 +111,32 @@ function Kal() {
     }
   };
 
-  const calculateWattHour = (appliance) => {
-    return appliance.wattage * appliance.runtime * appliance.quantity;
+  const calculateTotalWattHour = () => {
+    return appliances.reduce((sum, appliance) => {
+      return sum + (appliance.wattage * appliance.runtime * appliance.quantity);
+    }, 0);
   };
 
-  const totalWattage = appliances.reduce((sum, appliance) => sum + (appliance.wattage * appliance.quantity), 0);
-  const totalWattHour = appliances.reduce((sum, appliance) => sum + calculateWattHour(appliance), 0);
+  const calculateEnergyOutput = () => {
+    return appliances.reduce((sum, appliance) => {
+      return sum + appliance.energyOutput;
+    }, 0);
+  }
 
-  // Calculate Total Energy Consumption for all Appliances (in kWh)
-  const totalEnergyConsumption = totalWattHour / 1000;
-
-  // Assume electricity rate in $ per kWh
-  const electricityRate = 0.12;
-
-  // Calculate total cost of energy (in $)
-  const totalCost = totalEnergyConsumption * electricityRate;
-
-  // Assume CO2 emissions factor in kg per kWh
-  const co2EmissionsFactor = 0.5;
-
-  // Calculate Carbon Emissions (in kg CO2)
-  const carbonEmissions = totalEnergyConsumption * co2EmissionsFactor;
-
+  const totalWattHour = calculateTotalWattHour();
+  const totalEnergyOutput = calculateEnergyOutput();
   // Calculate Energy Efficiency Percentage
-  // Let's assume the useful energy output is equal to the total energy consumption
-  const usefulEnergyOutput = totalEnergyConsumption;
-  // Then, the total energy input is the same as the total energy consumption
-  const totalEnergyInput = totalEnergyConsumption;
-  // Calculate Energy Efficiency Percentage
+  const totalEnergyInput = totalWattHour;
+  const usefulEnergyOutput = totalEnergyOutput;
   const energyEfficiencyPercentage = (usefulEnergyOutput / totalEnergyInput) * 100;
 
   const handleApplianceChange = (event) => {
     setSelectedAppliance(event.target.value);
   };
 
+  let placehold;
   return (
+
     <div className="App" style={{ marginTop: '3%' }}>
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>Energy Efficiency Calculator</h1>
 
@@ -145,40 +144,57 @@ function Kal() {
         <label htmlFor="appliance">Appliance:</label>
         <select id="appliance" name="appliance" value={selectedAppliance} onChange={handleApplianceChange}>
           {Object.keys(APPLIANCE_OPTIONS).map((option) => (
-            <option key={option} value={option}>
+            <option key={option} value={option} placehold={option.wattage}>
               {option}
             </option>
           ))}
         </select>
 
-        <label htmlFor="wattage">Wattage {"(W)"}:</label>
+        <label htmlFor="wattage">Wattage (W):</label>
         <input type="number" id="wattage" name="wattage" value={wattage} onChange={(e) => setWattage(e.target.value)} required />
 
-        <label htmlFor="runtime">Run Time {"(hrs)"}:</label>
+        <label htmlFor="runtime">Run Time (hrs):</label>
         <input type="number" id="runtime" name="runtime" value={runtime} onChange={(e) => setRuntime(e.target.value)} required />
 
         <label htmlFor="quantity">Number of Appliances:</label>
         <input type="number" id="quantity" name="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
 
-        <button type="submit">Add Appliance</button>
+        <div className='question-container'>
+          <label htmlFor="energyOutput">Energy Output:</label>
+          <div className="input-container">
 
-        <Link to='/guide' style={{ textDecoration: 'none', display: 'inline-block', padding: '10px 20px', backgroundColor: '#4CAF50', color: '#fff', borderRadius: '5px', cursor: 'pointer', marginLeft: '74%' }}>Guide</Link>
+            <input type="number" id="energyOutput" name="energyOutput" value={energyOutput} onChange={(e) => setEnergyOutput(e.target.value)} required />
+            <Link to='/services' className='question-mark' onClick={handleQuestionClick}>
+              <img src={question_mark} className='question-img'></img>
+            </Link>
+          </div>
+        </div>
+
+        <div className='btn-container'>
+
+
+          <button type="submit" className='cal-btn'>Add Appliance</button>
+
+          <Link to='/guide' className='link-btn'> Guide</Link>
+          {/*  */}
+        </div>
 
       </form>
+
+
       <br />
-      <table border="1">
-        <thead>
+      <table className="calculation-table">
+        <thead className='header-container'>
           <tr>
             <th>Load Description</th>
             <th>Quantity</th>
-            <th>Wattage {"(W)"}</th>
-            <th>Run-time {"(hrs)"}</th>
+            <th>Wattage (W)</th>
+            <th>Run-time (hrs)</th>
             <th>Number of Appliances</th>
-            <th>Watt-Hour {"(Wh)"}</th>
-            <th>Action</th>
+            <th>Energy Output (Wh)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='info-container'>
           {appliances.map((appliance, index) => (
             <tr key={index}>
               <td>{appliance.name}</td>
@@ -186,45 +202,40 @@ function Kal() {
               <td>{appliance.wattage}</td>
               <td>{appliance.runtime}</td>
               <td>{appliance.quantity}</td>
-              <td>{calculateWattHour(appliance)}</td>
+              <td>{appliance.energyOutput}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <table className="calculation-table">
-        <thead>
+        <thead className='header-container'>
           <tr>
-            <th>Calculations</th>
-            <th>Recomendations</th>
-            <th>Enquiry</th>
-            <th></th>
+            <th>Variables</th>
+            <th>Calculation</th>
+            <th>Recomendation</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='info-container'>
           <tr>
-            <td>Total Energy Consumption {"(kWh)"}:</td>
-            <td>{totalEnergyConsumption}</td>
-            <td>Consider replacing old appliances with energy-efficient models.</td>
-            <td></td>
+            <td>Total Energy Consumption (kWh):</td>
+            <td>{(totalWattHour / 1000).toFixed(2)}</td>
+            <td>You can use solar panels to save at least this amount of energy</td>
           </tr>
           <tr>
             <td>Total Cost of Energy:</td>
-            <td>{totalCost}</td>
-            <td>Invest in renewable energy sources to reduce long-term costs.</td>
-            <td></td>
+            <td>${(totalWattHour / 1000 * 0.12).toFixed(2)}</td>
+            <td>After installing solar panels, you will save this amount of money</td>
           </tr>
           <tr>
-            <td>Carbon Emissions {"(kg CO2)"}:</td>
-            <td>{carbonEmissions}</td>
+            <td>Carbon Emissions (kg CO2):</td>
+            <td>{(totalWattHour / 1000 * 0.5).toFixed(2)}</td>
             <td>Reduce energy consumption to minimize carbon footprint.</td>
-            <td></td>
           </tr>
           <tr>
-            <td>Energy Efficiency Percentage {"(%)"}:</td>
-            <td>{energyEfficiencyPercentage}</td>
+            <td>Energy Efficiency Percentage (%):</td>
+            <td>{energyEfficiencyPercentage.toFixed(2)}</td>
             <td>Upgrade insulation and seal air leaks to improve efficiency.</td>
-            <td></td>
           </tr>
         </tbody>
       </table>
